@@ -70,16 +70,13 @@ module make_basic_cell() {
 }
 
 module make_flower(target_size = DEFAULT_FLOWER_SIZE) {
-  render() {
+  union() {
     make_honeycomb(mode="normal", flower_size=target_size);
-    union() {
-      make_honeycomb(mode="normal", flower_size=target_size);
-      difference() {
-        make_honeycomb(mode="inflated", flower_size=target_size);
-        make_honeycomb(mode="hull", flower_size=target_size);
-      }
+    difference() {
+      make_honeycomb(mode="inflated", flower_size=target_size);
+      make_honeycomb(mode="hull", flower_size=target_size);
     }
   }
 }
 
-make_flower(target_size=DEFAULT_FLOWER_SIZE);
+make_flower(target_size=2);
