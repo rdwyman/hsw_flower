@@ -79,4 +79,4 @@ module make_flower(target_size = DEFAULT_FLOWER_SIZE) {
   }
 }
 
-make_flower(target_size=2);
+//make_flower(target_size=2);
