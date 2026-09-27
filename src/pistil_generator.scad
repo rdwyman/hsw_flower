@@ -27,7 +27,7 @@ module hexagon_pyramid(height = 10, radius = 5) {
 
 module make_flower_center(height = 15, stalk_thickness_ratio = 0.3, transition_height_ratio = 0.5) {
 
-  union() {
+  difference() {
     union() {
       insert_with_plate();
 
@@ -42,7 +42,7 @@ module make_flower_center(height = 15, stalk_thickness_ratio = 0.3, transition_h
       transition_ratio = (1 + stalk_thickness_ratio) / 2;
 
       rotate([180, 0, 0]) {
-        hexagon_pyramid(radius=af_to_diameter(HEX_SEPARATION / 2 + HEX_WALL_THICKNESS / 2), height);
+        hexagon_pyramid(radius=INSERT_LIP_DIAMETER / 2, height);
       }
 
       translate([0, 0, -height]) {
@@ -52,7 +52,12 @@ module make_flower_center(height = 15, stalk_thickness_ratio = 0.3, transition_h
         make_flower(target_size=1);
       }
     }
+    translate([0, 0, -height]) {
+      hexagon_pyramid(radius=af_to_diameter(HEX_SEPARATION / 2), height);
+    }
   }
 }
 
 make_flower_center();
+
+TODO: Go back about 2 commits and bring that code back in as a different type of pistil
